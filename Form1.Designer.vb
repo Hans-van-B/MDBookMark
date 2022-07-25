@@ -22,12 +22,15 @@ Partial Class Form1
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
+        Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(Form1))
         Me.MenuStrip1 = New System.Windows.Forms.MenuStrip()
         Me.FileToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.NewDateToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.CopyToNewDataToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToolStripMenuItemOpenBookmarksFolder = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ToolStripGoToDate = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ToolStripMenuItemOpenBookmarksFolderinXYPlorer = New System.Windows.Forms.ToolStripMenuItem()
         Me.ExitToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.SettingsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ShowLogToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
@@ -37,6 +40,10 @@ Partial Class Form1
         Me.ToolStripMenuItemTab9 = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToolStripMenuItemTab11 = New System.Windows.Forms.ToolStripMenuItem()
         Me.AllowBrowsingToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.FollowOtherInstancesToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.HelpToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.HelpToolStripMenuHelp = New System.Windows.Forms.ToolStripMenuItem()
+        Me.HelpAboutToolStripHelpAbout = New System.Windows.Forms.ToolStripMenuItem()
         Me.StatusStrip1 = New System.Windows.Forms.StatusStrip()
         Me.ToolStripStatusLabel1 = New System.Windows.Forms.ToolStripStatusLabel()
         Me.ToolStripStatusLabel2 = New System.Windows.Forms.ToolStripStatusLabel()
@@ -81,6 +88,8 @@ Partial Class Form1
         Me.RichTextBox1 = New System.Windows.Forms.RichTextBox()
         Me.TabPageInfo = New System.Windows.Forms.TabPage()
         Me.TextBoxInfo = New System.Windows.Forms.TextBox()
+        Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
+        Me.FolderBrowserDialog1 = New System.Windows.Forms.FolderBrowserDialog()
         Me.MenuStrip1.SuspendLayout()
         Me.StatusStrip1.SuspendLayout()
         Me.TabControlI1.SuspendLayout()
@@ -102,7 +111,7 @@ Partial Class Form1
         '
         'MenuStrip1
         '
-        Me.MenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.FileToolStripMenuItem, Me.SettingsToolStripMenuItem})
+        Me.MenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.FileToolStripMenuItem, Me.SettingsToolStripMenuItem, Me.HelpToolStripMenuItem})
         Me.MenuStrip1.Location = New System.Drawing.Point(0, 0)
         Me.MenuStrip1.Name = "MenuStrip1"
         Me.MenuStrip1.Size = New System.Drawing.Size(620, 24)
@@ -111,7 +120,7 @@ Partial Class Form1
         '
         'FileToolStripMenuItem
         '
-        Me.FileToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.NewDateToolStripMenuItem, Me.CopyToNewDataToolStripMenuItem, Me.ToolStripMenuItemOpenBookmarksFolder, Me.ExitToolStripMenuItem})
+        Me.FileToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.NewDateToolStripMenuItem, Me.CopyToNewDataToolStripMenuItem, Me.ToolStripMenuItemOpenBookmarksFolder, Me.ToolStripGoToDate, Me.ToolStripMenuItemOpenBookmarksFolderinXYPlorer, Me.ExitToolStripMenuItem})
         Me.FileToolStripMenuItem.Name = "FileToolStripMenuItem"
         Me.FileToolStripMenuItem.Size = New System.Drawing.Size(37, 20)
         Me.FileToolStripMenuItem.Text = "File"
@@ -119,30 +128,42 @@ Partial Class Form1
         'NewDateToolStripMenuItem
         '
         Me.NewDateToolStripMenuItem.Name = "NewDateToolStripMenuItem"
-        Me.NewDateToolStripMenuItem.Size = New System.Drawing.Size(201, 22)
+        Me.NewDateToolStripMenuItem.Size = New System.Drawing.Size(262, 22)
         Me.NewDateToolStripMenuItem.Text = "&New Date"
         '
         'CopyToNewDataToolStripMenuItem
         '
         Me.CopyToNewDataToolStripMenuItem.Name = "CopyToNewDataToolStripMenuItem"
-        Me.CopyToNewDataToolStripMenuItem.Size = New System.Drawing.Size(201, 22)
+        Me.CopyToNewDataToolStripMenuItem.Size = New System.Drawing.Size(262, 22)
         Me.CopyToNewDataToolStripMenuItem.Text = "&Copy to new data"
         '
         'ToolStripMenuItemOpenBookmarksFolder
         '
         Me.ToolStripMenuItemOpenBookmarksFolder.Name = "ToolStripMenuItemOpenBookmarksFolder"
-        Me.ToolStripMenuItemOpenBookmarksFolder.Size = New System.Drawing.Size(201, 22)
+        Me.ToolStripMenuItemOpenBookmarksFolder.Size = New System.Drawing.Size(262, 22)
         Me.ToolStripMenuItemOpenBookmarksFolder.Text = "&Open Bookmarks Folder"
+        '
+        'ToolStripGoToDate
+        '
+        Me.ToolStripGoToDate.Name = "ToolStripGoToDate"
+        Me.ToolStripGoToDate.Size = New System.Drawing.Size(262, 22)
+        Me.ToolStripGoToDate.Text = "&Go To Date"
+        '
+        'ToolStripMenuItemOpenBookmarksFolderinXYPlorer
+        '
+        Me.ToolStripMenuItemOpenBookmarksFolderinXYPlorer.Name = "ToolStripMenuItemOpenBookmarksFolderinXYPlorer"
+        Me.ToolStripMenuItemOpenBookmarksFolderinXYPlorer.Size = New System.Drawing.Size(262, 22)
+        Me.ToolStripMenuItemOpenBookmarksFolderinXYPlorer.Text = "Open Bookmarks Folder in &XYPlorer"
         '
         'ExitToolStripMenuItem
         '
         Me.ExitToolStripMenuItem.Name = "ExitToolStripMenuItem"
-        Me.ExitToolStripMenuItem.Size = New System.Drawing.Size(201, 22)
+        Me.ExitToolStripMenuItem.Size = New System.Drawing.Size(262, 22)
         Me.ExitToolStripMenuItem.Text = "&Exit"
         '
         'SettingsToolStripMenuItem
         '
-        Me.SettingsToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ShowLogToolStripMenuItem, Me.ResetToolStripMenuItem, Me.OpenLogFileToolStripMenuItem, Me.TabcountToolStripMenuItem, Me.AllowBrowsingToolStripMenuItem})
+        Me.SettingsToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ShowLogToolStripMenuItem, Me.ResetToolStripMenuItem, Me.OpenLogFileToolStripMenuItem, Me.TabcountToolStripMenuItem, Me.AllowBrowsingToolStripMenuItem, Me.FollowOtherInstancesToolStripMenuItem})
         Me.SettingsToolStripMenuItem.Name = "SettingsToolStripMenuItem"
         Me.SettingsToolStripMenuItem.Size = New System.Drawing.Size(61, 20)
         Me.SettingsToolStripMenuItem.Text = "Settings"
@@ -151,26 +172,26 @@ Partial Class Form1
         '
         Me.ShowLogToolStripMenuItem.CheckOnClick = True
         Me.ShowLogToolStripMenuItem.Name = "ShowLogToolStripMenuItem"
-        Me.ShowLogToolStripMenuItem.Size = New System.Drawing.Size(156, 22)
+        Me.ShowLogToolStripMenuItem.Size = New System.Drawing.Size(194, 22)
         Me.ShowLogToolStripMenuItem.Text = "Show &Log"
         '
         'ResetToolStripMenuItem
         '
         Me.ResetToolStripMenuItem.Name = "ResetToolStripMenuItem"
-        Me.ResetToolStripMenuItem.Size = New System.Drawing.Size(156, 22)
+        Me.ResetToolStripMenuItem.Size = New System.Drawing.Size(194, 22)
         Me.ResetToolStripMenuItem.Text = "Reset"
         '
         'OpenLogFileToolStripMenuItem
         '
         Me.OpenLogFileToolStripMenuItem.Name = "OpenLogFileToolStripMenuItem"
-        Me.OpenLogFileToolStripMenuItem.Size = New System.Drawing.Size(156, 22)
+        Me.OpenLogFileToolStripMenuItem.Size = New System.Drawing.Size(194, 22)
         Me.OpenLogFileToolStripMenuItem.Text = "&Open Log File"
         '
         'TabcountToolStripMenuItem
         '
         Me.TabcountToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripMenuItemTab9, Me.ToolStripMenuItemTab11})
         Me.TabcountToolStripMenuItem.Name = "TabcountToolStripMenuItem"
-        Me.TabcountToolStripMenuItem.Size = New System.Drawing.Size(156, 22)
+        Me.TabcountToolStripMenuItem.Size = New System.Drawing.Size(194, 22)
         Me.TabcountToolStripMenuItem.Text = "Tabcount"
         '
         'ToolStripMenuItemTab9
@@ -190,8 +211,36 @@ Partial Class Form1
         'AllowBrowsingToolStripMenuItem
         '
         Me.AllowBrowsingToolStripMenuItem.Name = "AllowBrowsingToolStripMenuItem"
-        Me.AllowBrowsingToolStripMenuItem.Size = New System.Drawing.Size(156, 22)
+        Me.AllowBrowsingToolStripMenuItem.Size = New System.Drawing.Size(194, 22)
         Me.AllowBrowsingToolStripMenuItem.Text = "Allow Browsing"
+        '
+        'FollowOtherInstancesToolStripMenuItem
+        '
+        Me.FollowOtherInstancesToolStripMenuItem.Checked = True
+        Me.FollowOtherInstancesToolStripMenuItem.CheckOnClick = True
+        Me.FollowOtherInstancesToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked
+        Me.FollowOtherInstancesToolStripMenuItem.Name = "FollowOtherInstancesToolStripMenuItem"
+        Me.FollowOtherInstancesToolStripMenuItem.Size = New System.Drawing.Size(194, 22)
+        Me.FollowOtherInstancesToolStripMenuItem.Text = "Follow Other Instances"
+        '
+        'HelpToolStripMenuItem
+        '
+        Me.HelpToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.HelpToolStripMenuHelp, Me.HelpAboutToolStripHelpAbout})
+        Me.HelpToolStripMenuItem.Name = "HelpToolStripMenuItem"
+        Me.HelpToolStripMenuItem.Size = New System.Drawing.Size(44, 20)
+        Me.HelpToolStripMenuItem.Text = "&Help"
+        '
+        'HelpToolStripMenuHelp
+        '
+        Me.HelpToolStripMenuHelp.Name = "HelpToolStripMenuHelp"
+        Me.HelpToolStripMenuHelp.Size = New System.Drawing.Size(135, 22)
+        Me.HelpToolStripMenuHelp.Text = "&Help"
+        '
+        'HelpAboutToolStripHelpAbout
+        '
+        Me.HelpAboutToolStripHelpAbout.Name = "HelpAboutToolStripHelpAbout"
+        Me.HelpAboutToolStripHelpAbout.Size = New System.Drawing.Size(135, 22)
+        Me.HelpAboutToolStripHelpAbout.Text = "Help &About"
         '
         'StatusStrip1
         '
@@ -641,6 +690,10 @@ Partial Class Form1
         Me.TextBoxInfo.Size = New System.Drawing.Size(606, 247)
         Me.TextBoxInfo.TabIndex = 0
         '
+        'Timer1
+        '
+        Me.Timer1.Interval = 2000
+        '
         'Form1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -736,4 +789,12 @@ Partial Class Form1
     Friend WithEvents ButtonCreateDT12BookmarkDir As Button
     Friend WithEvents WebBrowser12 As WebBrowser
     Friend WithEvents ToolStripMenuItemTab11 As ToolStripMenuItem
+    Friend WithEvents ToolStripMenuItemOpenBookmarksFolderinXYPlorer As ToolStripMenuItem
+    Friend WithEvents Timer1 As Timer
+    Friend WithEvents FollowOtherInstancesToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents HelpToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents HelpToolStripMenuHelp As ToolStripMenuItem
+    Friend WithEvents HelpAboutToolStripHelpAbout As ToolStripMenuItem
+    Friend WithEvents ToolStripGoToDate As ToolStripMenuItem
+    Friend WithEvents FolderBrowserDialog1 As FolderBrowserDialog
 End Class

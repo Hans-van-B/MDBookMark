@@ -104,6 +104,7 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <Compile Include="ResetFormPosition.vb" />
     <Compile Include="SaveToReg.vb" />
     <Compile Include="Util.vb" />
   </ItemGroup>

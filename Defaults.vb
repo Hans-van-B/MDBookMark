@@ -73,13 +73,15 @@
                     If DName = "BookMarkDir" Then
                         BookMarkDir = DVal
                         xtrace("Set BookMarkDir = " & BookMarkDir)
+                        BookMarkDir = Environment.ExpandEnvironmentVariables(BookMarkDir)
+                        xtrace("Set BookMarkDir = " & BookMarkDir)
                     End If
 
                     If DName = "TabMode" Then
                         TabMode = Val(DVal)
                         xtrace("Set TabMode = " & DVal)
 
-                        xtrace_init_substr()
+                        'xtrace_init_substr()
                     End If
 
                     If DName = "DT1TXT" Then

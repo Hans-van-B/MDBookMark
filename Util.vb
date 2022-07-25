@@ -39,4 +39,11 @@
     Sub Do_Events()
         Application.DoEvents()
     End Sub
+
+    Public Function GetSeconds() As Integer
+        Dim startDate As New DateTime(2000, 1, 1)
+        Dim result As Integer
+        result = (DateTime.Now - startDate).TotalSeconds
+        Return result
+    End Function
 End Module

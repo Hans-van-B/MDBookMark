@@ -1,8 +1,9 @@
 ﻿Imports System
 Imports System.IO
 Module BookMarks
-    Sub InitBookMarks()
-        xtrace_subs("InitBookMarks")
+    Function GetActiveBookmarksDir() As String
+
+        xtrace_subs("GetActiveBookmarksDir")
         ' Make a reference to a directory.
         Dim di1 As New DirectoryInfo(BookMarkDir)
         ' Get a reference to each file in that directory.
@@ -14,6 +15,13 @@ Module BookMarks
             ActiveBookMarkDir = BookMarkDir & "\" & di2.Name
         Next di2
         xtrace_i("ActiveBookMarkDir = " & ActiveBookMarkDir)
+
+        xtrace_sube("GetActiveBookmarksDir")
+        Return ActiveBookMarkDir    ' Global
+    End Function
+    Sub InitBookMarks(Init As Boolean)
+        xtrace_subs("InitBookMarks")
+        If Init Then GetActiveBookmarksDir()
         Form1.ToolStripStatusLabel1.Text = ActiveBookMarkDir
 
         BookmarkDirDT1 = ActiveBookMarkDir & "\DT1"
@@ -155,7 +163,7 @@ Module BookMarks
         Form1.WebBrowser5.Visible = True
         Form1.WebBrowser5.Dock = DockStyle.Fill
         Form1.WebBrowser5.Navigate(BookmarkDirDT5)
-        xtrace_sube()
+        xtrace_sube("InitBrowser5")
     End Sub
 
     Sub InitBrowser6()
@@ -163,7 +171,7 @@ Module BookMarks
         Form1.WebBrowser6.Visible = True
         Form1.WebBrowser6.Dock = DockStyle.Fill
         Form1.WebBrowser6.Navigate(BookmarkDirDT6)
-        xtrace_sube()
+        xtrace_sube("InitBrowser6")
     End Sub
 
     Sub InitBrowser7()
@@ -171,7 +179,7 @@ Module BookMarks
         Form1.WebBrowser7.Visible = True
         Form1.WebBrowser7.Dock = DockStyle.Fill
         Form1.WebBrowser7.Navigate(BookmarkDirDT7)
-        xtrace_sube()
+        xtrace_sube("InitBrowser7")
     End Sub
 
     Sub InitBrowser8()
@@ -179,7 +187,7 @@ Module BookMarks
         Form1.WebBrowser8.Visible = True
         Form1.WebBrowser8.Dock = DockStyle.Fill
         Form1.WebBrowser8.Navigate(BookmarkDirDT8)
-        xtrace_sube()
+        xtrace_sube("InitBrowser8")
     End Sub
 
     Sub InitBrowser9()
@@ -187,7 +195,7 @@ Module BookMarks
         Form1.WebBrowser9.Visible = True
         Form1.WebBrowser9.Dock = DockStyle.Fill
         Form1.WebBrowser9.Navigate(BookmarkDirDT9)
-        xtrace_sube()
+        xtrace_sube("InitBrowser9")
     End Sub
 
     Sub InitBrowser10()
@@ -195,7 +203,7 @@ Module BookMarks
         Form1.WebBrowser10.Visible = True
         Form1.WebBrowser10.Dock = DockStyle.Fill
         Form1.WebBrowser10.Navigate(BookmarkDirDT10)
-        xtrace_sube()
+        xtrace_sube("InitBrowser10")
     End Sub
 
     Sub InitBrowser11()
@@ -203,7 +211,7 @@ Module BookMarks
         Form1.WebBrowser11.Visible = True
         Form1.WebBrowser11.Dock = DockStyle.Fill
         Form1.WebBrowser11.Navigate(BookmarkDirDT11)
-        xtrace_sube()
+        xtrace_sube("InitBrowser11")
     End Sub
 
     Sub InitBrowser12()
@@ -211,7 +219,7 @@ Module BookMarks
         Form1.WebBrowser12.Visible = True
         Form1.WebBrowser12.Dock = DockStyle.Fill
         Form1.WebBrowser12.Navigate(BookmarkDirDT12)
-        xtrace_sube()
+        xtrace_sube("InitBrowser12")
     End Sub
 
     '==== Reset Browser =======================================================
@@ -220,14 +228,14 @@ Module BookMarks
         Form1.WebBrowser1.Visible = False
         Form1.WebBrowser1.Dock = DockStyle.None
         Form1.WebBrowser1.Navigate("")
-        xtrace_sube()
+        xtrace_sube("ResetBrowser1")
     End Sub
     Sub ResetBrowser2()
         xtrace_subs("ResetBrowser2")
         Form1.WebBrowser2.Visible = False
         Form1.WebBrowser2.Dock = DockStyle.None
         Form1.WebBrowser2.Navigate("")
-        xtrace_sube()
+        xtrace_sube("ResetBrowser2")
     End Sub
 
     Sub ResetBrowser3()
@@ -235,70 +243,70 @@ Module BookMarks
         Form1.WebBrowser3.Visible = False
         Form1.WebBrowser3.Dock = DockStyle.None
         Form1.WebBrowser3.Navigate("")
-        xtrace_sube()
+        xtrace_sube("ResetBrowser3")
     End Sub
     Sub ResetBrowser4()
         xtrace_subs("ResetBrowser4")
         Form1.WebBrowser4.Visible = False
         Form1.WebBrowser4.Dock = DockStyle.None
         Form1.WebBrowser4.Navigate("")
-        xtrace_sube()
+        xtrace_sube("ResetBrowser4")
     End Sub
     Sub ResetBrowser5()
         xtrace_subs("ResetBrowser5")
         Form1.WebBrowser5.Visible = False
         Form1.WebBrowser5.Dock = DockStyle.None
         Form1.WebBrowser5.Navigate("")
-        xtrace_sube()
+        xtrace_sube("ResetBrowser5")
     End Sub
     Sub ResetBrowser6()
         xtrace_subs("ResetBrowser6")
         Form1.WebBrowser6.Visible = False
         Form1.WebBrowser6.Dock = DockStyle.None
         Form1.WebBrowser6.Navigate("")
-        xtrace_sube()
+        xtrace_sube("ResetBrowser6")
     End Sub
     Sub ResetBrowser7()
         xtrace_subs("ResetBrowser7")
         Form1.WebBrowser7.Visible = False
         Form1.WebBrowser7.Dock = DockStyle.None
         Form1.WebBrowser7.Navigate("")
-        xtrace_sube()
+        xtrace_sube("ResetBrowser7")
     End Sub
     Sub ResetBrowser8()
         xtrace_subs("ResetBrowser8")
         Form1.WebBrowser8.Visible = False
         Form1.WebBrowser8.Dock = DockStyle.None
         Form1.WebBrowser8.Navigate("")
-        xtrace_sube()
+        xtrace_sube("ResetBrowser8")
     End Sub
     Sub ResetBrowser9()
         xtrace_subs("ResetBrowser9")
         Form1.WebBrowser9.Visible = False
         Form1.WebBrowser9.Dock = DockStyle.None
         Form1.WebBrowser9.Navigate("")
-        xtrace_sube()
+        xtrace_sube("ResetBrowser9")
     End Sub
     Sub ResetBrowser10()
         xtrace_subs("ResetBrowser10")
         Form1.WebBrowser10.Visible = False
         Form1.WebBrowser10.Dock = DockStyle.None
         Form1.WebBrowser10.Navigate("")
-        xtrace_sube()
+        xtrace_sube("ResetBrowser10")
     End Sub
     Sub ResetBrowser11()
         xtrace_subs("ResetBrowser11")
         Form1.WebBrowser11.Visible = False
         Form1.WebBrowser11.Dock = DockStyle.None
         Form1.WebBrowser11.Navigate("")
-        xtrace_sube()
+        xtrace_sube("ResetBrowser11")
     End Sub
     Sub ResetBrowser12()
         xtrace_subs("ResetBrowser12")
         Form1.WebBrowser12.Visible = False
         Form1.WebBrowser12.Dock = DockStyle.None
         Form1.WebBrowser12.Navigate("")
-        xtrace_sube()
+        xtrace_sube("ResetBrowser12")
     End Sub
 
     '==== Enable Navigate =====================================================
@@ -316,7 +324,7 @@ Module BookMarks
         Form1.WebBrowser10.AllowNavigation = True
         Form1.WebBrowser11.AllowNavigation = True
         Form1.WebBrowser12.AllowNavigation = True
-        xtrace_sube()
+        xtrace_sube("EnableNavigate")
     End Sub
 
     '==== Disable Navigate
@@ -347,7 +355,7 @@ Module BookMarks
         Form1.WebBrowser10.WebBrowserShortcutsEnabled = False
         Form1.WebBrowser11.WebBrowserShortcutsEnabled = False
         Form1.WebBrowser12.WebBrowserShortcutsEnabled = False
-        xtrace_sube()
+        xtrace_sube("DisableNavigate")
     End Sub
 
 End Module

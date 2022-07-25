@@ -1,77 +1,86 @@
 ﻿Module Log
-    Dim TabStr As String = ""
-    Dim SubStr1 As String = ""
-    Dim SubStr2 As String = ""
-    Dim Bullit As String = ""
+    Dim SubLevel As Integer = 0
+    Dim LTrace As Integer = 2
+    Dim G_TL_Sub As Integer = 2  ' Trace level for Subroutines
+    Public LogFile As String = Temp & "\" & AppName & ".log"
 
     Sub xtrace_init()
-        My.Computer.FileSystem.WriteAllText(LogFile, "" & vbNewLine, False)
-        WriteInfo(AppName & " V" & AppVer)
-        xtrace("AppRoot = " & AppRoot)
-        WriteInfo("LogFile = " & LogFile)
-
-        xtrace_init_substr()
+        ' Show the command-line string at the top of the log file
+        My.Computer.FileSystem.WriteAllText(LogFile, Environment.CommandLine & vbNewLine, False)
+        My.Computer.FileSystem.WriteAllText(LogFile, "xtrace_init" & vbNewLine, True)
     End Sub
 
-    Sub xtrace_init_substr()
-        xtrace("TabMode = " & TabMode.ToString)
-        If TabMode = 0 Then ' No tabbing
-            TabStr = ""
-            SubStr1 = "## "
-            Bullit = " * "
+    Sub xtrace_header()
+        xtrace_subs("xtrace_header")
+        xtrace_i(AppName & " V" & AppVer)
+        xtrace_TimeStamp()
 
-        ElseIf TabMode = 1 Then ' Minimal tabbing
-            TabStr = " "
-            Dim SubStr1 = ">"
-            Bullit = ""
+        xtrace_i("AppRoot = " & AppRoot)
+        xtrace_i("Log level to logfile = " & LTrace.ToString, 2)
+        xtrace_sube("xtrace_header")
+    End Sub
 
-        ElseIf TabMode = 2 Then ' Clear Tabbing
-            TabStr = "|  "
-            SubStr1 = "|->"
-            Bullit = ""
+    '---- xtrace ----
+    Sub xtrace_root(Msg As String, TV As Integer)
+        Dim Nr As Int16
+        Dim Tab As String = ""
 
-        ElseIf TabMode = 3 Then ' Clear Tabbing
-            TabStr = "|  "
-            SubStr1 = "|->"
-            SubStr2 = "|<-"
-            Bullit = ""
+        ' If subroutines are Not logged then tabbing is also disabeled
+        If LTrace >= G_TL_Sub Then
+            ' If exiting main or sublevel maint error,
+            ' this if makes it more clear
+            If SubLevel >= 0 Then Tab = "|"
 
+            For Nr = 1 To SubLevel
+                Tab = Tab + "  |"
+            Next
+        End If
+
+        If TV <= LTrace Then
+            My.Computer.FileSystem.WriteAllText(LogFile, Tab & Msg & vbNewLine, True)
         End If
     End Sub
-
-    '---- xtrace
     Sub xtrace(Msg As String)
-        xtrace(Msg, 2)
+        xtrace_root(" " & Msg, 2)
     End Sub
 
     Sub xtrace(Msg As String, TV As Integer)
-        If TV <= LTrace Then
-            Dim Tab As String = ""
-            Dim Nr As Integer
-            For Nr = 1 To SubLevel
-                Tab = Tab + TabStr
-            Next
-
-            My.Computer.FileSystem.WriteAllText(LogFile, Tab + Msg & vbNewLine, True)
-        End If
+        xtrace_root(" " & Msg, TV)
     End Sub
 
+    '---- xtrace_i ----
     Sub xtrace_i(Msg As String)
-        xtrace(Bullit & Msg)
+        xtrace(" * " & Msg)
     End Sub
 
+    Sub xtrace_i(Msg As String, TV As Integer)
+        xtrace(" * " & Msg, TV)
+    End Sub
+
+    '--- xtrace TimeStamp ----
+    Sub xtrace_TimeStamp()
+        xtrace_i("Timestamp = " & DateTime.Now)
+    End Sub
+
+    '--- xtrace Sub ----
     Sub xtrace_subs(Msg As String)
-        xtrace(SubStr1 & Msg)
+        xtrace_root("->" & Msg & " (" & (SubLevel + 1).ToString & ")", G_TL_Sub)
+        SubLevel = SubLevel + 1
+    End Sub
+
+    Sub xtrace_subs(Msg As String, TV As Integer)
+        xtrace_root("->" & Msg & " (" & (SubLevel + 1).ToString & ")", TV)
         SubLevel = SubLevel + 1
     End Sub
 
     Sub xtrace_sube(Msg As String)
         SubLevel = SubLevel - 1
-        If SubStr2 <> "" Then xtrace(SubStr2 & Msg)
+        xtrace_root("<-" & Msg & " (" & (SubLevel + 1).ToString & ")", G_TL_Sub)
     End Sub
 
-    Sub xtrace_sube()
-        xtrace_sube("")
+    Sub xtrace_sube(Msg As String, TV As Integer)
+        SubLevel = SubLevel - 1
+        xtrace_root("<-" & Msg & " (" & (SubLevel + 1).ToString & ")", TV)
     End Sub
 
     Sub xtrace_err(Msg As String)
@@ -82,4 +91,5 @@
         Form1.TextBoxInfo.AppendText(Msg & vbNewLine)
         xtrace(Msg)
     End Sub
+
 End Module
