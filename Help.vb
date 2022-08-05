@@ -21,11 +21,23 @@
             WriteHelp("</head>")
             WriteHelp("<H2>" & AppName & " V" & AppVer & " Help Page</H2>")
             WriteHelp("MD Bookmark intends to let you store bookmarks separately for each Virtual Desktop or &quot;Task View&quot;<br>")
-            WriteHelp("The bookmark view does not allow you to browse, so if you want to store bookmarks to folders, you need to add &quot;explorer &quot; before the path.<br>")
-            WriteHelp("<br>")
+            WriteHelp("The bookmark view does not allow you to browse, 
+so if you want to store shortcuts to folders, you need to add &quot;explorer&quot; before the path.<br>
+<br>
+If the window is outside the display area then you can repeatedly click the icon in the task bar.
+This will reset the window location.<br>
+<i>Please note that when you do this, and another app that has the same function is active,
+then that app is also repeatedly activated and you will reset the window location of both apps.</i><br>
+
+<H3>Command line arguments</H3>
+--help or -h or /? : Show this help page <br>
+--tab=2 : Set the active tab <br>
+-v : Verbose increases the log file<br>
+")
             WriteHelp("<br>")
             WriteHelp("<br>")
             WriteHelp("The " & AppName & " log can be found here: " & LogFile & "<br>")
+            WriteHelp("The ini file can be found here: " & IniFile & "<br>")
             WriteHelp("</body>")
             WriteHelp("</html")
         End If

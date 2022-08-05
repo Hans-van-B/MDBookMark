@@ -1,14 +1,17 @@
 ﻿Module Defaults
+    Public IniFile As String = ""
     Sub ReadDefaults()
         xtrace_subs("ReadDefaults")
         Dim ReadFile
         Dim Template As String = ""
 
         If My.Computer.FileSystem.FileExists(IniFile1) Then
+            IniFile = IniFile1
             WriteInfo("Read Defaults " & IniFile1)
             ReadFile = My.Computer.FileSystem.OpenTextFileReader(IniFile1)
 
         ElseIf My.Computer.FileSystem.FileExists(IniFile2) Then
+            IniFile = IniFile2
             WriteInfo("Read Defaults " & IniFile2)
             ReadFile = My.Computer.FileSystem.OpenTextFileReader(IniFile2)
 
@@ -101,12 +104,12 @@
                     If DName = "DT9TXT" Then DefltDesktopTitle(8) = DVal
 
                     If DName = "Template" Then
-                            Template = DVal
-                            xtrace("Set Template = " & Template)
-                        End If
-
-
+                        Template = DVal
+                        xtrace("Set Template = " & Template)
                     End If
+
+
+                End If
 
             Catch ex As Exception
 

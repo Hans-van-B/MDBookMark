@@ -1,6 +1,6 @@
 ﻿Module Glob
     Public AppName As String = "MDBookmark"
-    Public AppVer As String = "0.12"
+    Public AppVer As String = "0.13"
     Public AppRoot As String = Application.StartupPath
     Public CD As String = My.Computer.FileSystem.CurrentDirectory
 
