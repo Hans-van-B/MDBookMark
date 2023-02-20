@@ -4,6 +4,12 @@ Module BookMarks
     Function GetActiveBookmarksDir() As String
 
         xtrace_subs("GetActiveBookmarksDir")
+
+        If Not My.Computer.FileSystem.DirectoryExists(BookMarkDir) Then
+            xtrace_i("Create " & BookMarkDir)
+            My.Computer.FileSystem.CreateDirectory(BookMarkDir)
+        End If
+
         ' Make a reference to a directory.
         Dim di1 As New DirectoryInfo(BookMarkDir)
         ' Get a reference to each file in that directory.

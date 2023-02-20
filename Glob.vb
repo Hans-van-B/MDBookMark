@@ -15,7 +15,7 @@
     ' Defaults
     Public IniFile1 As String = AppRoot & "\" & AppName & ".ini"
     Public IniFile2 As String = AppRoot & "\Data\" & AppName & ".ini"
-    Public BookMarkDir As String = "C:\Temp\Bookmarks"
+    Public BookMarkDir As String = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) & "\MDBookmarks"
     Public D_FormW As Integer = 300
     Public TimerTraceLevel As Integer = 3
     Public EnableTimer As Boolean = True

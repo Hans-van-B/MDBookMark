@@ -136,7 +136,7 @@
         xtrace_subs("CreateIniFile")
         WriteInfo("Create Defaults " & IniFile1)
         My.Computer.FileSystem.WriteAllText(IniFile1, "[INIT]" & vbNewLine, False)
-        My.Computer.FileSystem.WriteAllText(IniFile1, "BookMarkDir=" & vbNewLine, True)
+        My.Computer.FileSystem.WriteAllText(IniFile1, "BookMarkDir=" & BookMarkDir & vbNewLine, True)
 
         xtrace_sube("CreateIniFile")
     End Sub
