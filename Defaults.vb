@@ -7,18 +7,18 @@
 
         If My.Computer.FileSystem.FileExists(IniFile1) Then
             IniFile = IniFile1
-            WriteInfo("Read Defaults " & IniFile1)
+            Form1.WriteInfo("Read Defaults " & IniFile1)
             ReadFile = My.Computer.FileSystem.OpenTextFileReader(IniFile1)
 
         ElseIf My.Computer.FileSystem.FileExists(IniFile2) Then
             IniFile = IniFile2
-            WriteInfo("Read Defaults " & IniFile2)
+            Form1.WriteInfo("Read Defaults " & IniFile2)
             ReadFile = My.Computer.FileSystem.OpenTextFileReader(IniFile2)
 
         Else
-            WriteInfo("Failed to read:")
-            WriteInfo("   " & IniFile1)
-            WriteInfo("Or " & IniFile2)
+            Form1.WriteInfo("Failed to read:")
+            Form1.WriteInfo("   " & IniFile1)
+            Form1.WriteInfo("Or " & IniFile2)
             CreateIniFile()
             Exit Sub
         End If
@@ -80,13 +80,6 @@
                         xtrace("Set BookMarkDir = " & BookMarkDir)
                     End If
 
-                    If DName = "TabMode" Then
-                        TabMode = Val(DVal)
-                        xtrace("Set TabMode = " & DVal)
-
-                        'xtrace_init_substr()
-                    End If
-
                     If DName = "DT1TXT" Then
                         xtrace_i("Set DT1TXT = " & DVal)
                         DefltDesktopTitle(0) = DVal
@@ -134,7 +127,7 @@
     '---- Create ini file -----------------------------------------------------
     Sub CreateIniFile()
         xtrace_subs("CreateIniFile")
-        WriteInfo("Create Defaults " & IniFile1)
+        Form1.WriteInfo("Create Defaults " & IniFile1)
         My.Computer.FileSystem.WriteAllText(IniFile1, "[INIT]" & vbNewLine, False)
         My.Computer.FileSystem.WriteAllText(IniFile1, "BookMarkDir=" & BookMarkDir & vbNewLine, True)
 

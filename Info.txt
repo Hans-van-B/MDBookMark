@@ -1,0 +1,9 @@
+Info.txt
+https://learn.microsoft.com/en-us/windows/win32/api/shobjidl_core/nn-shobjidl_core-ivirtualdesktopmanager
+https://learn.microsoft.com/en-us/windows/win32/api/shobjidl_core/nf-shobjidl_core-ivirtualdesktopmanager-getwindowdesktopid
+
+https://learn.microsoft.com/en-us/windows/desktop/shell/virtualdesktopmanager
+
+visual basic .net virtualdesktopmanager
+
+visual basic .net virtualdesktopmanager code example

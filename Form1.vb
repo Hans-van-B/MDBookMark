@@ -25,6 +25,11 @@ Public Class Form1
         xtrace_sube("Form1_Load")
     End Sub
 
+    Public Shared Sub WriteInfo(Msg)
+        Form1.TextBoxInfo.AppendText(Msg & vbNewLine)
+        xtrace(Msg)
+    End Sub
+
     '---- Resize Form ---------------------------------------------------------
     Private Sub FormResize()
         xtrace_subs("FormResize")
@@ -84,12 +89,23 @@ Public Class Form1
     '---- New Date
     Private Sub NewDateToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles NewDateToolStripMenuItem.Click
         xtrace_subs("NewDateToolStripMenuItem_Click")
+
+        CreateNewDateDir(BookMarkDir)
+
+        xtrace_sube("NewDateToolStripMenuItem_Click")
+    End Sub
+
+    Public Shared Sub CreateNewDateDir(BMDir)
+        xtrace_subs("CreateNewDateDir")
+
         Dim CurDate As String = Date.Now.Date
         xtrace_i(CurDate)
-        My.Computer.FileSystem.CreateDirectory(BookMarkDir & "\" & CurDate)
-
+        ActiveBookMarkDir = BMDir & "\" & CurDate
+        My.Computer.FileSystem.CreateDirectory(ActiveBookMarkDir)
+        xtrace_i("ActiveBookMarkDir = " & ActiveBookMarkDir)
         InitBookMarks(True)
-        xtrace_sube("NewDateToolStripMenuItem_Click")
+
+        xtrace_sube("CreateNewDateDir")
     End Sub
 
     '---- Copy to new Date

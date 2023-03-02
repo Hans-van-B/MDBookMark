@@ -1,16 +1,12 @@
 ﻿Module Glob
     Public AppName As String = "MDBookmark"
-    Public AppVer As String = "0.13"
+    Public AppVer As String = "0.14"
     Public AppRoot As String = Application.StartupPath
     Public CD As String = My.Computer.FileSystem.CurrentDirectory
 
     ' Log File
     Public Temp As String = Environment.GetEnvironmentVariable("TEMP")
     Public LTrace As Integer = 2
-    Public ErrorCount As Integer = 0
-    Public WarningCount As Integer = 0
-    Public SubLevel As Integer = 0
-    Public TabMode As Integer = 2
 
     ' Defaults
     Public IniFile1 As String = AppRoot & "\" & AppName & ".ini"
@@ -20,7 +16,7 @@
     Public TimerTraceLevel As Integer = 3
     Public EnableTimer As Boolean = True
 
-    Public DefltDesktopTitle() As String = {"Default Support", "MDP Dev", "MDP Test", "TA Inst Dev", "TA Inst Test & Release", "VB Dev", "", "", "", ""}
+    Public DefltDesktopTitle() As String = {"Default", "Visual Studio", "VS Test / GitHub", " ", " ", " ", "", "", "", ""}
 
     ' BookMarks
     Public ActiveBookMarkDir As String
